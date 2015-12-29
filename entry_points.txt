@@ -1,0 +1,4 @@
+
+        [console_scripts]
+        docker-zabbix-script-sender = docker_zabbix_script_sender.zabbix_sender:run
+    
