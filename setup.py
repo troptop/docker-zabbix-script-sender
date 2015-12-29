@@ -5,7 +5,7 @@ from setuptools import setup
 from textwrap import dedent
 
 NAME = "docker-zabbix-script-sender"
-GITHUB_ORG_URL = ""
+GITHUB_ORG_URL = "https://github.com/troptop/"
 ROOT_DIR = os.path.dirname(__file__)
 SOURCE_DIR = os.path.join(ROOT_DIR)
 
