@@ -72,7 +72,7 @@ class zabbixSender(threading.Thread):
 		)
 	    	parser.add_argument('-i', '--interval',
     		        metavar='<sec>',
-    	        	default=30,
+    	        	default=1800,
 	    	        type=int,
     		        help='Specify Zabbix update interval (in sec). Default is %(default)s'
     	    	)
@@ -93,6 +93,8 @@ class zabbixSender(threading.Thread):
     		        self.args.zabbix_server = os.environ['ZABBIX_SERVER']
 	    	if self.args.host is None:
     		        self.args.host = os.environ['ZABBIX_HOST']
+		if "INTERVAL" in os.environ :
+			self.args.interval = os.environ['INTERVAL']
 		## Hostame in environment varaiable
 		if "HOSTNAME" in os.environ :
 			self.hostname=os.environ['HOSTNAME']
