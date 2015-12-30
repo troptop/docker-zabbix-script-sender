@@ -36,7 +36,7 @@ The DZSS command line need only a few parameter :
 		- **Working Directory** : you have to share the working directory (/usr/src/app)if you want to Configure the container
 Example :
 ::
-        docker run -e ZABBIX_SERVER=IP_SERVER/HOSTNAME --name=zabbix-client -it -v /PATH/TO/VOLUME:/usr/src/app -v /var/run/docker.sock:/var/run/docker.sock troptop/docker-zabbix-script-sender
+        docker run -e ZABBIX_SERVER=IP_SERVER/HOSTNAME -e INTERVAL=30 --name=zabbix-client -it -v /PATH/TO/VOLUME:/usr/src/app -v /var/run/docker.sock:/var/run/docker.sock troptop/docker-zabbix-script-sender
 
 File Configuration
 ##################
@@ -81,7 +81,7 @@ Sections Explanation
 	- **CONFIG Section** :
                 This section allow you to setup another specific file for a specific DZSS Container.
 
-                This section contains a source subSection. This subSection contains a list of parameter corresponding to the DZSS Container's name and the specific configuration file apply to it.
+                This section contains a source subSection. This subSection contains a list of parameter corresponding to **the DZSS Container's name** and **the specific configuration file** apply to it.
 
                 For exemple, you have 2 DZSS containers running on the same host (zabbix-client1 and zabbix-client2). The container called zabbix-client1 will use the configration file source_zabbix1.json and the container called zabbix-client2 will use the configuration file source_zabbix2.json
                 
