@@ -78,7 +78,7 @@ The File looks like :
 - **CONFIG Section** :
 This section contains a source subSection. This subSection contains a list of parameter corresponding to the **DZSS Container's name** and **the specific configuration file** apply to it.
 
-For exemple, you have 2 DZSS containers running on the same host (zabbix-client1 and zabbix-client2). The container called zabbix-client1 will use the configration file source_zabbix1.json and the container called zabbix-client2 will use the configuration file source_zabbix2.json
+	For exemple, you have 2 DZSS containers running on the same host (zabbix-client1 and zabbix-client2). The container called zabbix-client1 will use the configration file source_zabbix1.json and the container called zabbix-client2 will use the configuration file source_zabbix2.json
 
 	**_The CONFIG Section can only be declared in the Default.ini file_**
 
