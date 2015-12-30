@@ -70,37 +70,31 @@ The File can look like :
 ```
 
 #### Sections Explanation
-        - **CONFIG Section** :
-                This section allow you to setup another specific file for a specific DZSS Container.
 
-                This section contains a source subSection. This subSection contains a list of parameter corresponding to the DZSS Container's name and the specific configuration file apply to it.
+- **CONFIG Section** :
+This section allow you to setup another specific file for a specific DZSS Container.
+This section contains a source subSection. This subSection contains a list of parameter corresponding to the DZSS Container's name and the specific configuration file apply to it.
+For exemple, you have 2 DZSS containers running on the same host (zabbix-client1 and zabbix-client2). The container called zabbix-client1 will use the configration file source_zabbix1.json and the container called zabbix-client2 will use the configuration file source_zabbix2.json
 
-                For exemple, you have 2 DZSS containers running on the same host (zabbix-client1 and zabbix-client2). The container called zabbix-client1 will use the configration file source_zabbix1.json and the container called zabbix-client2 will use the configuration file source_zabbix2.json
+**The CONFIG Section can only be declared in the Default.ini file**
 
-                **The CONFIG Section can only be declared in the Default.ini file**
+- **Container's Name Section** :
+This Section allows you to setup specific scripts for the container you want to monitor.
+The name of the section has to have the exact same name of the container.
+This section has 2 subSections :
+	1. **reference** : This subSection references other files you want to use to monitor this container in more of the scripts you already have in this section. Useful if you want to have a specific file for a certain type of servers (exemple : a generic configuration file for all the apache servers)
+A reference has 2 parameters corresponding to the **"Configuration File"** you want to use to monitor the server and **"The Section"** in this file you have to use to monitor it
 
-        - **Container's Name Section** :
-                This Section allows you to setup specific scripts for the container you want to monitor.
-                The name of the section has to have the exact same name of the container.
-                This section has 2 subSections :
+In the example above, the subSection mypostgres contains one reference. In more of using the scripts in the scripts subSection to monitor the mypostgres container, DZSS will get the scripts in the "/usr/src/app/storage/database.json" configuration file at the "postgresql" section
 
-                1. **reference** : This subSection references other files you want to use to monitor this container in more of the scripts you already have in this section. Useful if you want to have a specific file for a certain type of servers (exemple : a generic configuration file for all the apache servers)
-
-                  A reference has 2 parameters corresponding to the **"Configuration File"** you want to use to monitor the server and **"The Section"** in this file you have to use to monitor it
-
-                  In the example above, the subSection mypostgres contains one reference. In more of using the scripts in the scripts subSection to monitor the mypostgres container, DZSS will get the scripts in the "/usr/src/app/storage/database.json" configuration file at the "postgresql" section
-
-                  In the same way, in the subSection myapache, it has 2 references. This section will monitor the container called myapache. In this case these two references are identicals. The parameter "section" is empty or does not exist. This means that DZSS will get every section in the "/usr/src/app/apache.json" configuration file to monitor the server
+In the same way, in the subSection myapache, it has 2 references. This section will monitor the container called myapache. In this case these two references are identicals. The parameter "section" is empty or does not exist. This means that DZSS will get every section in the "/usr/src/app/apache.json" configuration file to monitor the server
 
 With the reference files, we can imagine that the apache.json file looks like :
 
-			2. **scripts** : This subSection list the scripts you will execute to monitor the containers. DZSS will execute this script and request the zabbix server send it the statistic.
-
-                  A script has 5 parameters corresponding to the **"key"** you had setup on the zabbix server, **"interpreter"** is the interpreter used to execute the script, **"file"** is the script file, **"argument"** are the argument passed to the script, **"delay"** is the time interval where this script will be executed periodically.
-
-                  If you do not setup up the delay or if it is empty, **the default value is 30s**
-
-                  The output format of the script has to be only one value get by an echo ouput on stdout
+2. **scripts** : This subSection list the scripts you will execute to monitor the containers. DZSS will execute this script and request the zabbix server send it the statistic.
+A script has 5 parameters corresponding to the **"key"** you had setup on the zabbix server, **"interpreter"** is the interpreter used to execute the script, **"file"** is the script file, **"argument"** are the argument passed to the script, **"delay"** is the time interval where this script will be executed periodically.
+If you do not setup up the delay or if it is empty, **the default value is 30s**
+The output format of the script has to be only one value get by an echo ouput on stdout
 
 
 ## Source File & Contribution
