@@ -118,7 +118,7 @@ class ConfParser():
 	def getCommand(self, scriptParam):
 		command = ""
 		# If the settings are OK
-		if (self.has_option(scriptParam,'interpreter') and self.has_option(scriptParam,'file') and self.has_option(scriptParam,'key'):
+		if (self.has_option(scriptParam,'interpreter') and self.has_option(scriptParam,'file') and self.has_option(scriptParam,'key')):
 			if (not self.has_option(scriptParam,'delay')) or scriptParam['delay'] == "":
 				delay = 60
 			else:
