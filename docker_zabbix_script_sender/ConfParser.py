@@ -119,11 +119,15 @@ class ConfParser():
 		command = ""
 		# If the settings are OK
 		if (self.has_option(scriptParam,'interpreter') and self.has_option(scriptParam,'file') and self.has_option(scriptParam,'key') and self.has_option(scriptParam,'delay')):
+			if (not self.has_option(scriptParam,'delay')) or scriptParam['delay'] == "":
+				delay = 60
+			else:
+				delay = scriptParam['delay'] 
 #			# If The file can be read
 			if (os.access(scriptParam['file'], os.F_OK)):
 				command = scriptParam['interpreter'] + " " + scriptParam['file'] + " " + scriptParam['argument']	
 				# Return The command and parameter
-				return {'command':command, 'key':scriptParam['key'], 'delay':scriptParam['delay']}
+				return {'command':command, 'key':scriptParam['key'], 'delay':delay}
 			else : 
 				self._logger.info("The file %s is not accessible", scriptParam['file'])
 		return None
