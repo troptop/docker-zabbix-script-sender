@@ -1,4 +1,3 @@
-## Docker Zabbix Script Sender
 #### Description
 
 The DZSS docker container is a zabbix agent that send zabbix trap to a zabbix server.
@@ -10,13 +9,11 @@ you will be able to send zabbix traps thanks to scripts developped in the langua
 For the complete documentation and example :
 http://docker-zabbix-script-sender.readthedocs.org/en/latest/index.html
 
-#### Settings the Working Directory
+#### Minimum Working Directory Settings
 
 The Working directory into the DZSS container is **/usr/src/app**.
 
 So if you want to interact directly with the DZSS container you have to share this directory with a local directory on the docker host.
-
-###### The minimum Working Directory Settings
 
 The docker container needs at least a settings JSON file called \"Default.ini\" and a log directory called "logs".
 ```
@@ -24,6 +21,7 @@ The docker container needs at least a settings JSON file called \"Default.ini\" 
         mkdir logs
         touch Default.ini
 ```
+
 #### Docker Command Line Settings
 
 The DZSS command line need only a few parameter :
@@ -73,7 +71,6 @@ The File looks like :
         }
 ```
 
-###### Sections Explanation
 
 - **CONFIG Section** :
 This section contains a source subSection. This subSection contains a list of parameter corresponding to the **DZSS Container's name** and **the specific configuration file** apply to it.
