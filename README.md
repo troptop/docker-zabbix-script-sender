@@ -1,22 +1,22 @@
-# Docker Zabbix Script Sender
-## Description
+## Docker Zabbix Script Sender
+#### Description
 
 The DZSS docker container is a zabbix agent that send zabbix trap to a zabbix server.
 The python docker API is provided 
 you will be able to send zabbix traps thanks to scripts developped in the language you like (bash,python,perl).
 
-## Documentation
+#### Documentation
 
 For the complete documentation and example :
 http://docker-zabbix-script-sender.readthedocs.org/en/latest/index.html
 
-## Settings the Working Directory
+#### Settings the Working Directory
 
 The Working directory into the DZSS container is **/usr/src/app**.
 
 So if you want to interact directly with the DZSS container you have to share this directory with a local directory on the docker host.
 
-#### The minimum Working Directory Settings
+###### The minimum Working Directory Settings
 
 The docker container needs at least a settings JSON file called \"Default.ini\" and a log directory called "logs".
 ```
@@ -24,7 +24,7 @@ The docker container needs at least a settings JSON file called \"Default.ini\" 
         mkdir logs
         touch Default.ini
 ```
-## Docker Command Line Settings
+#### Docker Command Line Settings
 
 The DZSS command line need only a few parameter :
 - Environment variable :
@@ -38,7 +38,7 @@ Example :
         docker run -e ZABBIX_SERVER=IP_SERVER/HOSTNAME -e INTERVAL=30 --name=zabbix-client -it -v /PATH/TO/VOLUME:/usr/src/app -v /var/run/docker.sock:/var/run/docker.sock troptop/docker-zabbix-script-sender
 ```
 
-## File Configuration
+#### File Configuration
 
 All the configuration files are **JSON files**.
 
@@ -73,7 +73,7 @@ The File looks like :
         }
 ```
 
-#### Sections Explanation
+###### Sections Explanation
 
 - **CONFIG Section** :
 This section contains a source subSection. This subSection contains a list of parameter corresponding to the **DZSS Container's name** and **the specific configuration file** apply to it.
@@ -91,7 +91,7 @@ This section has 2 subSections :
 A script has 5 parameters corresponding to the **"key"** you had setup on the zabbix server, **"interpreter"** is the interpreter used to execute the script, **"file"** is the script file, **"argument"** are the argument passed to the script, **"delay"** is the time interval where this script will be executed periodically.
 
 
-## Source File & Contribution
+#### Source File & Contribution
 
 Source Code : https://github.com/troptop/docker-zabbix-script-sender
 
