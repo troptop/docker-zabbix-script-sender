@@ -84,9 +84,9 @@ For exemple, you have 2 DZSS containers running on the same host (zabbix-client1
 - **Container's Name Section** :
 The name of the section has to have the exact same name of the container.
 This section has 2 subSections :
-1. **reference** : This subSection references other files you want to use to monitor this container in more of the scripts you already have in this section. A reference has 2 parameters corresponding to the **"Configuration File"** you want to use to monitor the server and **"The Section"** in this file you have to use to monitor it
+	1. **reference** : This subSection references other files you want to use to monitor this container in more of the scripts you already have in this section. A reference has 2 parameters corresponding to the **"Configuration File"** you want to use to monitor the server and **"The Section"** in this file you have to use to monitor it
 
-2. **scripts** : This subSection list the scripts you will execute to monitor the containers. DZSS will execute this script and request the zabbix server send it the statistic.
+	2. **scripts** : This subSection list the scripts you will execute to monitor the containers. DZSS will execute this script and request the zabbix server send it the statistic.
 A script has 5 parameters corresponding to the **"key"** you had setup on the zabbix server, **"interpreter"** is the interpreter used to execute the script, **"file"** is the script file, **"argument"** are the argument passed to the script, **"delay"** is the time interval where this script will be executed periodically.
 
 
