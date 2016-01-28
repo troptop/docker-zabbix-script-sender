@@ -4,9 +4,9 @@ The DZSS docker container is a zabbix agent that send zabbix trap to a zabbix se
 The python docker API is provided 
 you will be able to send zabbix traps thanks to scripts developped in the language you like (bash,python,perl).
 
-WARNING : this container need to access to /var/run/docker.sock
-Take care about give it the access permission, or the SELinux restriction 
-If you want to check if SELinux is the blocking the access try "setenforce 0" to disable it temporaly 
+**WARNING : this container need to access to /var/run/docker.sock**
+**Take care about give it the access permission, or the SELinux restriction** 
+**If you want to check if SELinux is the blocking the access try "setenforce 0" to disable it temporaly**
 
 #### Documentation
 
