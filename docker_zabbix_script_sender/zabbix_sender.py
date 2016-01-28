@@ -181,8 +181,7 @@ class zabbixSender(threading.Thread):
                                         for keyCommand in delkey:
                                                 del self.emitter[container][keyCommand]
                                         del self.emitter[container]
-                                        self._logger.info("Full Deletion of Monitored Container Done : %s - > %s", prev_running
-_containers_info[container][1], container)
+                                        self._logger.info("Full Deletion of Monitored Container Done : %s - > %s", prev_running_containers_info[container][1], container)
 
 	                ## Compare The running Container at the T time to the T-1 time (previous loop) to know if Containers have been stopped
                         ## If stopped, kill the threads that monitor the servers
