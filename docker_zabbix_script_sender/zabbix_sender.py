@@ -169,16 +169,22 @@ class zabbixSender(threading.Thread):
 
 			## Compare The running Container at the T-1 time to the T time (previous loop) to know if Containers have been stopped
 			## If started, start the threads that monitor the servers
-	                stopped_containers = prev_running_containers - running_containers_id
-			for container in stopped_containers:
-				if container in self.emitter:
-					self._logger.info("Container has been stopped : %s - > %s", prev_running_containers_info[container][1],container)
-					for keyCommand in self.emitter[container]:
-		                                self.emitter[container][keyCommand].shutdown()
-					for keyCommand in self.emitter[container]:
-		                                self.emitter[container][keyCommand].join()
-						del self.emitter[container][keyCommand]
-					del self.emitter[container]
+			 stopped_containers = prev_running_containers - running_containers_id
+                        for container in stopped_containers:
+                                if container in self.emitter:
+                                        self._logger.info("Container has been stopped : %s - > %s", prev_running_containers_inf
+o[container][1],container)
+                                        for keyCommand in self.emitter[container]:
+                                                self.emitter[container][keyCommand].shutdown()
+                                        for keyCommand in self.emitter[container]:
+                                                self.emitter[container][keyCommand].join()
+                                                delkey.append(keyCommand)
+                                        for keyCommand in delkey:
+                                                del self.emitter[container][keyCommand]
+                                        del self.emitter[container]
+                                        self._logger.info("Full Deletion of Monitored Container Done : %s - > %s", prev_running
+_containers_info[container][1], container)
+
 	                ## Compare The running Container at the T time to the T-1 time (previous loop) to know if Containers have been stopped
                         ## If stopped, kill the threads that monitor the servers
 			started_containers = running_containers_id - prev_running_containers
