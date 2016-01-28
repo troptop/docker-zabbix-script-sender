@@ -169,7 +169,7 @@ class zabbixSender(threading.Thread):
 
 			## Compare The running Container at the T-1 time to the T time (previous loop) to know if Containers have been stopped
 			## If started, start the threads that monitor the servers
-			 stopped_containers = prev_running_containers - running_containers_id
+			stopped_containers = prev_running_containers - running_containers_id
                         for container in stopped_containers:
                                 if container in self.emitter:
                                         self._logger.info("Container has been stopped : %s - > %s", prev_running_containers_inf
