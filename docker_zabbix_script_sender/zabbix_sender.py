@@ -172,8 +172,7 @@ class zabbixSender(threading.Thread):
 			stopped_containers = prev_running_containers - running_containers_id
                         for container in stopped_containers:
                                 if container in self.emitter:
-                                        self._logger.info("Container has been stopped : %s - > %s", prev_running_containers_inf
-o[container][1],container)
+                                        self._logger.info("Container has been stopped : %s - > %s", prev_running_containers_info[container][1],container)
                                         for keyCommand in self.emitter[container]:
                                                 self.emitter[container][keyCommand].shutdown()
                                         for keyCommand in self.emitter[container]:
