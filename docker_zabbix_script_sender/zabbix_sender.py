@@ -161,7 +161,6 @@ class zabbixSender(threading.Thread):
 				if self.json.has_section("CONFIG"):
 					myName=""
 					for i in running_containers_id:
-						print running_containers_info[i][0][:12]
 						if running_containers_info[i][0][:12] == self.hostname :
 							myName=running_containers_info[i][1][1:]
 							
