@@ -120,6 +120,13 @@ class zabbixSender(threading.Thread):
 		);
 		self.emitter={}
 
+	def extractName(self,container):
+		result=''
+		for cont in container:
+                                if len(cont.split("/"))==2:
+                                        result=cont
+		return result
+
 
 	## Main Thread ##
 	def run(self):
@@ -129,7 +136,8 @@ class zabbixSender(threading.Thread):
 		## Get all the Docker Containers on the Host ##
 	        all_containers = self.docker_client.containers(all=True)
 		for container in all_containers:
-                	self._logger.info("All containers on this Host : %s - > %s", container['Names'][0],container['Id'])
+			name=self.extractName(container)
+                	self._logger.info("All containers on this Host : %s - > %s", name,container['Id'])
 		## Get Only the Docker Containers Running
 		running_containers = self.docker_client.containers()
 		running_containers_id=set()
@@ -138,9 +146,10 @@ class zabbixSender(threading.Thread):
 		FILENAME=self.configFilename
 		## Get the ID and NAME of each Container
 		for container in running_containers:
-			self._logger.info("Container are already running : %s - > %s", container['Names'][0],container['Id'])
+                        name=self.extractName(container)
+			self._logger.info("Container are already running : %s - > %s", name,container['Id'])
 			running_containers_id.add(container['Id'])
-                        running_containers_info[container['Id']]=[container['Id'],container['Names'][0]]
+                        running_containers_info[container['Id']]=[container['Id'],name]
 		## Start the Thread Loop ##
 		while self.isRunning():
                 	self._logger.info("Main Thread is still RUNNING")
@@ -242,7 +251,8 @@ class zabbixSender(threading.Thread):
 		                running_containers_info={}
 	        	        for container in running_containers:
 	                	        running_containers_id.add(container['Id'])
-                        		running_containers_info[container['Id']]=[container['Id'],container['Names'][0]]
+		                        name=self.extractName(container)
+                        		running_containers_info[container['Id']]=[container['Id'],name]
 			else:
 	                	self._logger.info("PARSE ERROR : Please Check the Configuration File %s", self.configFilename )
 				
